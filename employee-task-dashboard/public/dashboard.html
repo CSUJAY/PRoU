@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Employee & Task Management</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Tasks</h1>
+        </div>
+        <div class="header-right">
+            <button id="logout-button" class="logout-btn">Log Out</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Top Metrics Cards (Visualization Area) -->
+        <section id="top-metrics-cards">
+            <!-- This is where the visualization data (metrics) will be placed -->
+            <div id="chart-container">
+                <h2>Task Completion Status</h2>
+                <canvas id="taskStatusChart" width="400" height="150"></canvas>
+            </div>
+            
+            <div class="metrics-grid">
+                <!-- Example Metric Card - Data will be populated by JS -->
+                <div class="metric-card">
+                    <span class="metric-flag low"></span>
+                    <p>Low Priority</p>
+                    <span id="metric-low" class="metric-value">0</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-flag medium"></span>
+                    <p>Medium Priority</p>
+                    <span id="metric-medium" class="metric-value">0</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-flag high"></span>
+                    <p>High Priority</p>
+                    <span id="metric-high" class="metric-value">0</span>
+                </div>
+                <div class="metric-card total">
+                    <p>Total Task</p>
+                    <span id="metric-total" class="metric-value">0</span>
+                </div>
+                <div class="metric-card done">
+                    <p>Total Task Done</p>
+                    <span id="metric-done" class="metric-value">0</span>
+                </div>
+                <div class="metric-card overdue">
+                    <p>Overdue</p>
+                    <span id="metric-overdue" class="metric-value">0</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task List Header/Controls (Unified Filter Row) -->
+        <section id="task-list-controls">
+            <div class="controls-row">
+                <!-- Search Input -->
+                <input type="text" id="task-search" placeholder="Search...">
+                
+                <!-- Filters/Buttons on the Right -->
+                <div class="filter-and-button-group">
+                    <select id="task-filter-status" class="task-filter">
+                        <option value="">Filter by Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">Doing</option>
+                        <option value="Complete">Completed</option>
+                    </select>
+                    <!-- Priority Filter (Need to assume priority logic in JS/API) -->
+                    <select id="task-filter-priority" class="task-filter">
+                        <option value="">Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                    <!-- Assigned Employee Filter (Will need JS to populate) -->
+                    <select id="task-filter-assignee" class="task-filter">
+                        <option value="">Assignee</option>
+                    </select>
+                    <button id="add-task-button" class="create-btn">+ Create Task</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Task List (The Cards) -->
+        <section id="task-cards-list">
+            <div class="task-list-header">
+                <span class="header-task">Task</span>
+                <span class="header-assigned">Assigned To</span>
+                <span class="header-priority">Priority</span>
+                <span class="header-status">Status</span>
+                <span class="header-due-date">Due Date</span>
+                <span class="header-actions"></span>
+            </div>
+            <div id="task-list-container">
+                <!-- Task Cards will be rendered here -->
+            </div>
+        </section>
+        
+        <!-- Employee Management (Simplified) -->
+        <section id="employee-management-section">
+            <h2>Employee Management</h2>
+             <table id="employee-table">
+                <thead>
+                    <tr>
+                        <th data-sort-by="name">Name </th>
+                        <th data-sort-by="role">Role </th>
+                        <th data-sort-by="department">Department </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employee-list">
+                    <!-- Employee rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+            <button id="add-employee-button" style="margin-top:15px;">Add New Employee</button>
+        </section>
+    </main>
+    
+    <!-- Modal (No change needed here) -->
+    <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
+        <div style="background:white; margin:10% auto; padding:20px; width:400px; border-radius: 8px;">
+            <h3 id="modal-title"></h3>
+            <form id="modal-form">
+                <button type="submit" id="modal-submit-button" style="margin-right: 10px;">Save</button>
+                <button type="button" id="modal-close-button">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

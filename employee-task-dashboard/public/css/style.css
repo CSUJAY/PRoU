@@ -1,0 +1,693 @@
+/* public/css/style.css - FINAL COMPLETE STYLING (SYNTAX FIXED) */
+
+/* --- 1. Global Reset & Typography --- */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f6fa;
+    color: #343a40; 
+    line-height: 1.6;
+}
+
+h1 {
+    color: #333;
+    font-weight: 600;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+h2 {
+    color: #1a1a2e;
+    font-weight: 600;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+
+/* Base button styles */
+button {
+    all: unset; /* Remove all default browser styles */
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* --- CUSTOM BUTTON STYLING (The Button 29 Base Design - SYNTAX CORRECTED) --- */
+.app-btn-base, .controls button, #modal-form button, .primary-btn, 
+td button, .logout-btn, .auth-tabs button {
+    /* Applying the core 'Button 29' styles universally */
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-family: inherit;
+    font-size: 14px; 
+    padding: 0 12px;
+    box-sizing: border-box;
+    height: 38px; 
+    line-height: 38px;
+}
+
+/* --- HOVER/FOCUS/ACTIVE STYLES (SYNTAX CORRECTED) --- */
+.app-btn-base:focus, .controls button:focus, #modal-form button:focus, .primary-btn:focus, .auth-tabs button:focus,
+td button:focus, .logout-btn:focus {
+    box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.app-btn-base:hover, .controls button:hover, #modal-form button:hover, .primary-btn:hover, .auth-tabs button:hover,
+td button:hover, .logout-btn:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.app-btn-base:active, .controls button:active, #modal-form button:active, .primary-btn:active, .auth-tabs button:active,
+td button:active, .logout-btn:active {
+    box-shadow: #3c4fe0 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+/* --- OVERRIDE SPECIFIC BUTTON CONTEXTS --- */
+
+/* Primary Button (Larger Size - Login/Register) */
+.primary-btn {
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
+    background-image: radial-gradient(100% 100% at 100% 0, #58a6ff 0, #3c82f6 100%) !important;
+}
+
+/* Table Edit/Delete Buttons (Smaller Size AND SPACING) */
+td button {
+    height: 32px; 
+    font-size: 13px;
+    padding: 0 10px;
+    line-height: 32px;
+    
+    /* Neutral Look Overrides */
+    background-image: none !important;
+    background-color: #6c757d; 
+    color: white !important;
+    box-shadow: none !important;
+    transform: none !important;
+    border: 1px solid #5a6268;
+}
+
+td button:hover {
+    background-color: #5a6268; 
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* NEW: SPACING FIX */
+td button.edit-task-btn, td button.edit-employee-btn {
+    margin-right: 8px; 
+}
+
+
+/* Create Task Button (Custom Color - Violet) */
+#add-task-button {
+    background-image: none !important;
+    background-color: #8a2be2 !important; 
+    box-shadow: rgba(138, 43, 226, .5) 0 2px 4px,rgba(138, 43, 226, .3) 0 7px 13px -3px,rgba(138, 43, 226, .5) 0 -3px 0 inset !important;
+}
+
+/* Logout Button (Neutral Look) */
+.logout-btn {
+    background-image: none !important;
+    background-color: #e9ecef !important;
+    color: #333 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+.logout-btn:hover {
+    background-color: #cfd4d8 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Auth Tabs (Specific Dark Mode Overrides - No Gradient) */
+.auth-tabs button {
+    background-image: none !important;
+    background: #21262d;
+    color: #8b949e;
+    box-shadow: none !important;
+    transform: none !important;
+}
+.auth-tabs button.active {
+    background: white !important;
+    color: #161b22 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+    transform: none !important;
+}
+
+/* --- 2. Header (Top Bar) --- */
+header {
+    background-color: #ffffff; 
+    color: #333;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* --- 3. Main Content Layout --- */
+main {
+    padding: 20px 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* --- 4. Top Metrics Cards (Visualization Area) --- */
+#top-metrics-cards {
+    display: grid;
+    grid-template-columns: 1.5fr 3fr; 
+    gap: 30px;
+    align-items: flex-start;
+    padding: 30px;
+    background: linear-gradient(135deg, #ffffff 0%, #e8f0ff 100%);
+}
+
+#chart-container {
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#chart-container h2 {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#taskStatusChart {
+    max-width: 400px;
+    width: 100%; 
+    height: auto;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.metric-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-left: 5px solid #007bff; 
+}
+
+.metric-card p {
+    font-size: 0.8em;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.metric-value {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #333;
+}
+
+/* --- 5. Task List Header/Controls --- */
+#task-list-controls {
+    padding: 15px 25px;
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Final Input/Select/Textarea Styling (Dashboard/Controls) */
+input[type="text"], select, input[type="date"], textarea {
+    padding: 10px 15px;
+    border-radius: 8px; 
+    font-size: 0.9em;
+    border: 1px solid #e0e0e0;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); 
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: white;
+    
+    /* Specific control overrides */
+    flex-grow: 1; 
+    max-width: 250px; 
+}
+
+input[type="text"]:focus, select:focus, input[type="date"]:focus, textarea:focus {
+    border-color: #007bff; 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+
+#task-search {
+    border-radius: 20px; /* Specific rounding for search bar */
+    flex-basis: 300px;
+    max-width: 300px;
+}
+
+.filter-and-button-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.task-filter {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+
+/* --- 6. Task Card List (Robust Alignment) --- */
+#task-cards-list {
+    background: white;
+    padding: 0 25px 25px 25px;
+    margin-bottom: 30px;
+}
+
+.task-list-header {
+    background-color: #f0f3f7; 
+    border-radius: 8px;
+    padding: 12px 15px; 
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #6c757d;
+    border-bottom: 1px solid #dee2e6;
+    
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 0.5fr; 
+    gap: 10px;
+    align-items: center;
+}
+
+.task-card {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 0.5fr; 
+    gap: 10px;
+    padding: 12px 15px;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+    font-size: 0.9em;
+}
+
+.task-card:hover {
+    background-color: #fcfcfc;
+}
+
+.task-card:last-child {
+    border-bottom: none;
+}
+
+/* Specific Card Item Styling */
+.initial-circle {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 0.8em;
+}
+
+.card-assigned-to {
+    display: flex;
+    align-items: center;
+}
+
+/* Task Status Pill */
+.status-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.pending, .to-do { 
+    background-color: #fef0f0;
+    color: #dc3545; 
+}
+
+.in-progress, .doing { 
+    background-color: #fff9e6;
+    color: #ffc107; 
+}
+
+.complete, .completed { 
+    background-color: #e8f9e8;
+    color: #28a745; 
+}
+
+
+/* --- 7. Employee Management (Standard Table) - FINAL POLISH --- */
+#employee-management-section {
+    padding: 25px;
+}
+
+#employee-management-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9em;
+    background: white; 
+    border-radius: 8px;
+    overflow: hidden; 
+}
+
+#employee-management-section thead th {
+    background-color: #f0f3f7; 
+    color: #495057;
+    font-weight: 600;
+    padding: 12px 15px;
+    border-bottom: 2px solid #dee2e6;
+    text-align: left; 
+}
+
+#employee-management-section tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef; 
+}
+
+#employee-management-section tbody tr:nth-child(even) {
+    background-color: #fcfcfc; 
+}
+
+#employee-management-section tbody tr:hover {
+    background-color: #f0f3f7; 
+}
+
+/* --- 8. AUTH/LOGIN DARK MODE STYLING --- */
+
+.dark-background {
+    background: #0d1117; 
+}
+
+#auth-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #161b22;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 0 1px #21262d;
+    text-align: left;
+    color: #c9d1d9;
+}
+
+#auth-container h2 {
+    color: white;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+#auth-container input {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Tabs Toggle (Sign Up / Sign In) */
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.auth-tabs button {
+    border: none;
+    flex-grow: 1;
+}
+
+.auth-tabs button.active {
+    background: white !important;
+    color: #161b22 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+    transform: none !important;
+}
+
+/* Primary Button (Create/Sign In) */
+.primary-btn {
+    font-weight: bold;
+    padding: 12px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* --- 9. Modals (IMPROVED ALIGNMENT AND USABILITY) --- */
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 1000;
+    overflow-y: auto; 
+}
+
+#modal > div {
+    background: white;
+    margin: 5% auto; 
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    position: relative; 
+}
+
+#modal-title {
+    color: #1a1a2e;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 10px;
+}
+
+#modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+/* Final Modal Input/Select/Textarea Styling */
+#modal-form input, #modal-form select, #modal-form textarea {
+    padding: 12px;
+    border-radius: 8px; /* Corrected to 8px */
+    font-size: 1em;
+    box-sizing: border-box; 
+    width: 100%;
+    background-color: #fcfcfc; /* Slight off-white background */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    transition: border-color 0.2s;
+    
+    /* Input Specifics */
+    border: 1px solid #ced4da;
+}
+
+#modal-form input:focus, #modal-form select:focus, #modal-form textarea:focus {
+    border-color: #007bff; 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+#modal-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Form Grid for Dual Columns (For layout like title/description on a single line) */
+.modal-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+/* Ensure elements inside grid inherit full width */
+.modal-grid-2 > * {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Button Group Styling */
+#modal-form .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#modal-form button {
+    height: 38px;
+    line-height: 38px;
+    font-size: 14px;
+    padding: 0 12px;
+    margin: 0;
+}
+
+#modal-form #modal-submit-button {
+    /* Style is inherited from custom button rules */
+    background-color: #007bff !important; 
+}
+
+#modal-form #modal-close-button-inner, #modal-form #modal-close-button {
+    background-color: #6c757d !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* --- 10. Responsive Overrides --- */
+@media screen and (max-width: 1024px) {
+    #top-metrics-cards {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header, main {
+        padding: 15px 20px;
+    }
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .task-list-header, .task-card {
+        grid-template-columns: 1fr; 
+        gap: 5px;
+        padding: 10px 0;
+    }
+    .task-card > span {
+        margin-bottom: 5px;
+    }
+    .controls-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-and-button-group {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+    .filter-and-button-group > *, #task-search {
+        max-width: 100%;
+        width: 100%;
+    }
+    #auth-container {
+        margin: 50px 20px;
+        padding: 20px;
+    }
+    .modal-grid-2 {
+        grid-template-columns: 1fr; 
+    }
+}
+/* --- FINAL ELEGANCE AND POLISH --- */
+
+/* 1. Metric Cards Polish (Adding Hover Effect and Definition) */
+.metrics-grid {
+    /* Ensure the grid items are well-aligned */
+    align-items: center; 
+}
+
+.metric-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+    z-index: 1; /* Bring to front on hover */
+}
+
+/* 2. Chart Enhancement (Better Legend Spacing/Alignment) */
+#chart-container {
+    /* Center the chart container content better */
+    justify-content: center;
+}
+
+/* 3. Input and Filter Polish */
+.filter-and-button-group {
+    /* Ensure all elements are nicely spaced and aligned vertically */
+    align-items: flex-end; 
+}
+
+/* Ensure the main search bar has a full shadow look */
+#task-search {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+}
+#task-search:focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25), 0 1px 3px rgba(0, 0, 0, 0.1); 
+}
+
+/* 4. Task Card Spacing and Vertical Alignment */
+.task-list-header, .task-card {
+    /* Fine-tune vertical padding */
+    padding: 14px 15px; 
+}
+
+.task-card {
+    /* Ensure content is perfectly centered vertically */
+    align-items: center;
+}
+
+/* Final Polish: Separators and Typography */
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    margin: 30px 0;
+}

@@ -1,0 +1,16 @@
+# Dependency folders
+node_modules/
+/dist/
+/build/
+
+# Critical Security/Environment Files
+.env
+
+# Logs and npm cache
+npm-debug.log
+.npm/
+.c9/
+
+# OS and Editor files
+.DS_Store
+*.swp

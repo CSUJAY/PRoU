@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register - Employee Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-background"> <!-- Added class for dark background -->
+    <div id="auth-container">
+        
+        <!-- Tab Bar for Toggle (Sign Up / Sign In) -->
+        <div class="auth-tabs">
+            <button id="show-register" class="active">Sign up</button>
+            <button id="show-login">Sign in</button>
+        </div>
+
+        <!-- Register Form -->
+        <form id="register-form">
+            <h2>Create an account</h2>
+            <input type="email" id="register-email" placeholder="Enter your email" required>
+            <input type="password" id="register-password" placeholder="Password" required>
+            <button type="submit" class="primary-btn">Create an account</button>
+        </form>
+
+        <!-- Login Form (Initially hidden) -->
+        <form id="login-form" style="display:none;">
+            <h2>Sign in</h2>
+            <input type="email" id="login-email" placeholder="Enter your email" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit" class="primary-btn">Sign in</button>
+        </form>
+        
+        <p class="separator">OR SIGN IN WITH</p>
+        
+        <div class="social-login">
+            <button class="social-btn google-btn">G Google</button>
+            <button class="social-btn apple-btn"> Apple</button>
+        </div>
+        
+        <p class="terms-text">By creating an account, you agree to our Terms & Service</p>
+        <p id="auth-message" class="message-area"></p>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
